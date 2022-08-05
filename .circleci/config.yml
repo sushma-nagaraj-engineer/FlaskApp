@@ -12,7 +12,7 @@ jobs:
             echo $HTTP_RESPONSE
             if [ $HTTP_RESPONSE != "\"YES\"" ]; then
               echo "Error Conflicting Release Dates $HTTP_RESPONSE"
-              exit 1
+              break
             fi
       - checkout
       - restore_cache:
