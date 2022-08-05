@@ -12,6 +12,7 @@ jobs:
             echo $HTTP_RESPONSE
             if [ $HTTP_RESPONSE != "\"YES\"" ]; then
               echo "Error Conflicting Release Dates $HTTP_RESPONSE"
+              echo "message"
               circleci-agent step halt
             fi
       - checkout
