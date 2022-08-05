@@ -4,6 +4,16 @@ jobs:
     docker:
       - image: cimg/python:3.10.1
     steps:
+      - run:
+          name: Get GitHub API Status
+          command: |
+            GH_URL="https://ddn8tic0ji.execute-api.us-east-1.amazonaws.com/stage/consent"
+            HTTP_RESPONSE=$(curl -X GET $GH_URL | jq --raw-output '.body' )
+            echo $HTTP_RESPONSE
+            if [ $HTTP_RESPONSE != "\"YES\"" ]; then
+              echo "Error Conflicting Release Dates $HTTP_RESPONSE"
+              exit 1
+            fi
       - checkout
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
