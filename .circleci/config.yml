@@ -8,7 +8,7 @@ jobs:
           name: Get GitHub API Status
           command: |
             GH_URL="https://jy4kfioiv1.execute-api.us-west-2.amazonaws.com/stage/consent"
-            HTTP_RESPONSE=$(curl -X GET $GH_URL | jq --raw-output '.body' )
+            HTTP_RESPONSE=$(curl -X GET $GH_URL)
             echo $HTTP_RESPONSE
             if [ $HTTP_RESPONSE != "\"YES\"" ]; then
               echo "Error Conflicting Release Dates $HTTP_RESPONSE"
