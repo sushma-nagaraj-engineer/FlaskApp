@@ -7,7 +7,7 @@ jobs:
       - run:
           name: Get GitHub API Status
           command: |
-            GH_URL="https://bbquh6t1o7.execute-api.us-west-2.amazonaws.com/stage/consent"
+            GH_URL="https://jy4kfioiv1.execute-api.us-west-2.amazonaws.com/stage/consent"
             HTTP_RESPONSE=$(curl -X GET $GH_URL | jq --raw-output '.body' )
             echo $HTTP_RESPONSE
             if [ $HTTP_RESPONSE != "\"YES\"" ]; then
